@@ -13,7 +13,7 @@ export default function Imagepassword() {
   const [numClicks, setNumClicks] = useState(0);
   const [imageStack, setImageStack] = useState([]);
   const [selectedNumbers,setSelectedNumbers] = useState([]);
-  const [array, setArray] = useState([...Array(25)].map((_, index) => index));
+  const [array, setArray] = useState([...Array(40)].map((_, index) => index));
   const [timer,setTimer] = useState(0);
   const [text,setText] = useState("");
   const [doSuffle,setDoSuffle] = useState(false)
