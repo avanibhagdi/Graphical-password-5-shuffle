@@ -2,7 +2,7 @@ import React, { useState,useEffect } from "react";
 import { collection, setDoc,  doc, getDoc, getDocs , } from "firebase/firestore";
 import { db } from "../config";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { faCircleArrowLeft, faCirclePlay } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 export default function Imagepassword() {
   const [selectedImages, setSelectedImages] = useState([]);
   const [numClicks, setNumClicks] = useState(0);
+  const [numShuffles, setNumShuffles] = useState(0);
   const [imageStack, setImageStack] = useState([]);
   const [selectedNumbers,setSelectedNumbers] = useState([]);
   const [array, setArray] = useState([...Array(40)].map((_, index) => index));
@@ -96,6 +97,7 @@ if(true){
     [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
   }
   setArray(newArray);
+  setNumShuffles(numShuffles+1);
 }
   };
 
@@ -178,6 +180,9 @@ if(true){
        <FontAwesomeIcon className="btnI" onClick={handleBackButtonClick} icon={faCircleArrowLeft} />
          
         )}
+      {imageStack.length >= 0 && numShuffles<1 && ( 
+       <FontAwesomeIcon className="btnS" onClick={shuffleArray} icon={faCirclePlay}/>
+       )}
 
 {imageStack.length === 6 && (
         <button className="confirm-button " 
@@ -208,7 +213,7 @@ if(true){
 
         {/* cirlce ends  */}
 
-        <div className="images__box">
+        {numShuffles > 0 &&(<div className="images__box">
           <div className="grid-container">
             {
               array.map((im,index)=><div key={im} onClick={() => handleImageClick(require(`../assets/Celeb${numClicks+1>6?6:numClicks+1}/${im+1}.jpg`),im+1)} className="grid-item">
@@ -217,7 +222,7 @@ if(true){
             }
            
           </div>
-        </div>
+        </div>)}
       </div>
       {/* <small ><b>User: {localStorage.getItem("name")}</b></small> */}
     </center>
