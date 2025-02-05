@@ -37,12 +37,31 @@ body {
   line-height: 42px;
   text-align: center;
 
-  color: #6b6b6b;
+  color: #241d1d;
+}
+
+.inner__text1 {
+  /* एक चेहरा चुनें */
+
+  position: absolute;
+  width: 500.75px;
+  height: 42px;
+  left: 50%;
+  transform: translate(-50%);
+  top: 100px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 22px;
+
+  color: #2a263a;
 }
 
 .outer__div__circle {
   position: relative;
-  top: 180px;
+  top: 130px;
   display: flex;
   justify-content: space-evenly;
 }
@@ -63,7 +82,7 @@ body {
 }
 .images__box {
   position: relative;
-  top: 248px;
+  top: 178px;
   margin-left: 16px;
   margin-right: 16px;
 }
@@ -88,16 +107,17 @@ body {
   position: absolute;
   top: 20px;
   left: 10px;
-  color: rgba(107, 107, 107, 1);
+  color: #047ef2;
 }
+
 .btnS {
   cursor: pointer;
-  height: 43px;
-  width: 43px;
+  height: 73px;
+  width: 73px;
   position: absolute;
-  top: 20px;
-  left: 300px;
-  color: rgba(107, 107, 107, 1);
+  top: 160px;
+  left: 160px;
+  color: #047ef2;
 }
 
 .success_bt {
@@ -139,7 +159,7 @@ body {
   width: 238px;
   height: 52px;
   text-align: center;
-  top: 108px;
+  top: 65px;
   left: 50%;
   transform: translate(-50%);
   color: white;

@@ -14,7 +14,7 @@ export default function Imagepassword() {
   const [numShuffles, setNumShuffles] = useState(0);
   const [imageStack, setImageStack] = useState([]);
   const [selectedNumbers,setSelectedNumbers] = useState([]);
-  const [array, setArray] = useState([...Array(40)].map((_, index) => index));
+  const [array, setArray] = useState([...Array(48)].map((_, index) => index));
   const [timer,setTimer] = useState(0);
   const [text,setText] = useState("");
   const [doSuffle,setDoSuffle] = useState(false)
@@ -42,7 +42,7 @@ export default function Imagepassword() {
        
         setDoSuffle(false)
 
-        setText("Set as password")
+        setText("Confirm Passface")
        }
       }
       catch(er){
@@ -173,58 +173,64 @@ if(true){
     
   }
   return (
-    <center>
-      <div className="outer__layer">
-        {imageStack.length > 0 && (
-         
-       <FontAwesomeIcon className="btnI" onClick={handleBackButtonClick} icon={faCircleArrowLeft} />
-         
-        )}
-      {imageStack.length >= 0 && numShuffles<1 && ( 
-       <FontAwesomeIcon className="btnS" onClick={shuffleArray} icon={faCirclePlay}/>
-       )}
-
-{imageStack.length === 6 && (
-        <button className="confirm-button " 
-        onClick={handleConfirmClick}
-        >
-         <span className="confirm-button-text"> {text}</span>
-        </button>
-      )}
-       {imageStack.length !== 6 && (
-         <p className="inner__text">एक चेहरा चुनें</p>)
-       }
-
-  
-        {/* cirlce start  */}
-
-        <div className="outer__div__circle">
-          {selectedImages.map((image, index) => (
-            <div key={index} className="inner__circle">
-           {
-          index+1 !== selectedImages.length ?<div className="div__askterisk">*</div> :<img src={image} key={index} />
-         }
-            </div>
-          ))}
-          {[...Array(6 - selectedImages.length)].map((image, index) => (
-            <div key={index} className="inner__circle"></div>
-          ))}
-        </div>
-
-        {/* cirlce ends  */}
-
-        {numShuffles > 0 &&(<div className="images__box">
-          <div className="grid-container">
-            {
-              array.map((im,index)=><div key={im} onClick={() => handleImageClick(require(`../assets/Celeb${numClicks+1>6?6:numClicks+1}/${im+1}.jpg`),im+1)} className="grid-item">
-              <img alt="img1" src={require(`../assets/Celeb${numClicks+1>6?6:numClicks+1}/${im+1}.jpg`)} width={76} height={76} />
-            </div>)
-            }
+      <center>
+        <div className="outer__layer">
+          {imageStack.length > 0 && (
            
+         <FontAwesomeIcon className="btnI" onClick={handleBackButtonClick} icon={faCircleArrowLeft}/>
+           
+          )}
+          {imageStack.length >= 0 && numShuffles<1 && (
+           
+           <FontAwesomeIcon className="btnS" onClick={shuffleArray} icon={faCirclePlay}/>
+             
+            )}
+  
+  {imageStack.length === 6 &&(
+          <button className="confirm-button " 
+          onClick={handleConfirmClick}
+          >
+           <span className="confirm-button-text"> {text}</span>
+          </button>
+        )}
+         {imageStack.length !== 6 && numShuffles > 0 &&(
+           <p className="inner__text">Pick a Face</p>)
+         }
+  
+        {imageStack.length !== 6 && numShuffles === 0 &&(
+           <p className="inner__text1">Press Play to Start</p>)
+         }
+  
+    
+          {/* cirlce start  */}
+  
+          <div className="outer__div__circle">
+            {selectedImages.map((image, index) => (
+              <div key={index} className="inner__circle">
+             {
+            index+1 !== selectedImages.length ?<div className="div__askterisk">*</div> :<img src={image} key={index} />
+           }
+              </div>
+            ))}
+            {numShuffles > 0  && ([...Array(6 - selectedImages.length)].map((image, index) => (
+              <div key={index} className="inner__circle"></div>
+            )))}
           </div>
-        </div>)}
-      </div>
-      {/* <small ><b>User: {localStorage.getItem("name")}</b></small> */}
-    </center>
-  );
-}
+  
+          {/* cirlce ends  */}
+  
+          {numShuffles > 0 &&(<div className="images__box">
+            <div className="grid-container">
+              {
+                array.map((im,index)=><div key={im} onClick={() => handleImageClick(require(`../assets/Celeb${numClicks+1>6?6:numClicks+1}/${im+1}.jpg`),im+1)} className="grid-item">
+                <img alt="img1" src={require(`../assets/Celeb${numClicks+1>6?6:numClicks+1}/${im+1}.jpg`)} width={76} height={76} />
+              </div>)
+              }
+             
+            </div>
+          </div>)}
+        </div>
+        {/* <small ><b>User: {localStorage.getItem("name")}</b></small> */}
+      </center>
+    );
+  }
