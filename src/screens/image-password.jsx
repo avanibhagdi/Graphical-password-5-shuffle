@@ -32,7 +32,7 @@ export default function Imagepassword() {
 
     const initCheck =async ()=>{
       try{
-        const docRef = doc(db, "celeb_graphical_password_4x12_final",localStorage.getItem("name"));
+        const docRef = doc(db, "celeb_graphical_password_4x12_final_1",localStorage.getItem("name"));
         const docSnap = await getDoc(docRef);
        if (docSnap.exists()){
         setText("Confirm Passfaces")
@@ -118,11 +118,11 @@ if(true){
   };
 
   const handleConfirmClick = async ()=>{
-    const docRef = doc(db, "celeb_graphical_password_4x12_final",localStorage.getItem("name"));
+    const docRef = doc(db, "celeb_graphical_password_4x12_final_1",localStorage.getItem("name"));
     const docSnap = await getDoc(docRef);
    if (docSnap.exists()){
   //  console.log(docSnap.data())
-  //  const attemptsCollectionRef = collection(db, "celeb_graphical_password_4x12_final", localStorage.getItem("name"), "attempts");
+  //  const attemptsCollectionRef = collection(db, "celeb_graphical_password_4x12_final_1", localStorage.getItem("name"), "attempts");
   //  const attemptsSnapshot = await getDocs(attemptsCollectionRef);
  
   //  const numberOfAttempts = attemptsSnapshot.size;
@@ -133,10 +133,11 @@ if(true){
   //  }
 
    if(docSnap.data().setup.toString()===selectedNumbers.toString()){
-    await setDoc(doc(db, "celeb_graphical_password_4x12_final",localStorage.getItem("name"),"attempts",`recall-${Date.now()}`), {
+    await setDoc(doc(db, "celeb_graphical_password_4x12_final_1",localStorage.getItem("name"),"attempts",`recall-${Date.now()}`), {
       timestamp: new Date().toString(),
       setup:docSnap.data().setup,
       recall:selectedNumbers ,
+      positions: selectedPositions,
       incorrect:"",
       status:true   ,
       time_taken:timer
@@ -150,10 +151,11 @@ if(true){
        incorrect.push(docSnap.data().setup[index])
       } 
     });
-    await setDoc(doc(db, "celeb_graphical_password_4x12_final",localStorage.getItem("name"),"attempts",`recall-${Date.now()}`), {
+    await setDoc(doc(db, "celeb_graphical_password_4x12_final_1",localStorage.getItem("name"),"attempts",`recall-${Date.now()}`), {
       timestamp: new Date().toString(),
       setup:docSnap.data().setup,
       recall:selectedNumbers ,
+      positions: selectedPositions,
       status:false  ,
       incorrect:incorrect,
       time_taken:timer,
@@ -165,10 +167,11 @@ if(true){
    }
    else{
    
-    await setDoc(doc(db, "celeb_graphical_password_4x12_final",localStorage.getItem("name")), {
+    await setDoc(doc(db, "celeb_graphical_password_4x12_final_1",localStorage.getItem("name")), {
       timestamp: new Date().toString(),
       name: localStorage.getItem("name"),
       setup:selectedNumbers   ,
+      setup_positions: selectedPositions,
       setup_time_taken:timer
 
     });
