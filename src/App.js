@@ -9,18 +9,50 @@ import ErrorC from "./screens/error";
 import Name from "./screens/name";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+const CryptoJS = require("crypto-js");
+const SECRET_KEY = "your16bytekey123"; 
+const IV = "16byteinitvector"; 
+
+function decryptUrlParams(encryptedData) {
+  try {
+      // Decode Base64
+      let encryptedBytes = CryptoJS.enc.Base64.parse(encryptedData);
+
+      // Decrypt using AES-CBC
+      let decrypted = CryptoJS.AES.decrypt(
+          { ciphertext: encryptedBytes },
+          CryptoJS.enc.Utf8.parse(SECRET_KEY),
+          {
+              iv: CryptoJS.enc.Utf8.parse(IV),
+              mode: CryptoJS.mode.CBC,
+              padding: CryptoJS.pad.Pkcs7, // Ensure PKCS7 padding
+          }
+      );
+
+      // Convert to string
+      let decryptedText = decrypted.toString(CryptoJS.enc.Utf8);
+      return JSON.parse(decryptedText); // Convert back to JSON object
+  } catch (error) {
+      console.error("Decryption failed:", error);
+      return null;
+  }
+}
+
 const url = new URL(window.location.href);
-console.log(url.search);
+const searchParamsEnc = (url.search).slice(1);
+let decryptedData = decryptUrlParams(searchParamsEnc);
 
-const name = url.searchParams.get("name"); // example url : http://localhost:3000/?name=John
+const name = decryptedData["name"];
 localStorage.setItem("name", name);
-console.log(name);
-const recall = url.searchParams.get("recall"); 
-localStorage.setItem("recall", recall);
-// console.log(recall);
 
-const attempt = url.searchParams.get("attempt"); 
+const recall = decryptedData["recall"]; 
+localStorage.setItem("recall", recall);
+
+const attempt = decryptedData["attempt"]; 
 localStorage.setItem("attempt", attempt);
+
+
 const router = createBrowserRouter([
   {
     path: "/",
