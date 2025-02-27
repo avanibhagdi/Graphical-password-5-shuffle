@@ -44,7 +44,7 @@ body {
   /* एक चेहरा चुनें */
 
   position: absolute;
-  width: 500.75px;
+  width: 360.75px;
   height: 42px;
   left: 50%;
   transform: translate(-50%);

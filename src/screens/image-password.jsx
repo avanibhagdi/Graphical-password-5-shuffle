@@ -299,10 +299,10 @@ if(true){
          <p className="inner__text2">Female Politicians / Public Figures</p>)
        }
        {imageStack.length !== 6 && numShuffles > 0 && numClicks===2&&(
-         <p className="inner__text2">Male Actors</p>)
+         <p className="inner__text2">Actors</p>)
        }
        {imageStack.length !== 6 && numShuffles > 0 && numClicks===3&&(
-         <p className="inner__text2">Female Actresses</p>)
+         <p className="inner__text2">Actresses</p>)
        }
        {imageStack.length !== 6 && numShuffles > 0 && numClicks===4&&(
          <p className="inner__text2">Sports</p>)
