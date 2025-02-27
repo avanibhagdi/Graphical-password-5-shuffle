@@ -15,7 +15,7 @@ export default function Imagepassword() {
   const [imageStack, setImageStack] = useState([]);
   const [selectedPositions, setSelectedPositions] = useState([]);
   const [selectedNumbers,setSelectedNumbers] = useState([]);
-  const [array, setArray] = useState([...Array(24)].map((_, index) => index));
+  const [array, setArray] = useState([...Array(48)].map((_, index) => index));
   const [timer,setTimer] = useState(0);
   const [text,setText] = useState("");
   const pilot_users = ["pilot1", "pilot2", "pilot3", "pilot4", "pilot5", "pilot6", "pilot7", "pilot8", "pilot9", "pilot10", "pilot11", "pilot12", "pilot13"];
