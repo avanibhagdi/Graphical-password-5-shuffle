@@ -33,11 +33,30 @@ body {
   font-family: "Mukta";
   font-style: normal;
   font-weight: 700;
-  font-size: 25.5621px;
+  font-size: 32px;
   line-height: 42px;
   text-align: center;
 
   color: #241d1d;
+}
+
+.inner__text2 {
+  /* एक चेहरा चुनें */
+
+  position: absolute;
+  width: 500.75px;
+  height: 42px;
+  left: 50%;
+  transform: translate(-50%);
+  top: 120px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 22px;
+
+  color: #2a263a;
 }
 
 .inner__text1 {
@@ -61,7 +80,7 @@ body {
 
 .outer__div__circle {
   position: relative;
-  top: 130px;
+  top: 160px;
   display: flex;
   justify-content: space-evenly;
 }
